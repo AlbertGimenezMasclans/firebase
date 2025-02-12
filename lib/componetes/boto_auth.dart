@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
 
 class BotoAuth extends StatelessWidget {
-  const BotoAuth({super.key});
+  final String text;
+  final Function() onTap;
+
+  const BotoAuth({
+    super.key,
+    required this.text,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Text Boto",style: TextStyle(color: Colors.white),),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: const Color.fromARGB(255, 70, 52, 236),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(18),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              letterSpacing: 3
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

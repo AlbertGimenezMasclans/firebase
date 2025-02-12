@@ -17,16 +17,16 @@ class TextfieldAuth extends StatelessWidget {
     return  Padding(
       padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 30),
       child: TextField(
-        cursorColor: Colors.yellow,
-        style: const TextStyle(color: Colors.yellow), 
+        cursorColor: Colors.white,
+        style: const TextStyle(color: Colors.white), 
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.white),
           enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.yellow)),
-          fillColor: Colors.blue, filled: true
+          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.indigo)),
+          fillColor: Colors.indigo[300], filled: true
         ),
       ),
       
