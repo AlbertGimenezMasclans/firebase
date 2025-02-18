@@ -1,8 +1,14 @@
+import 'package:firebase/firebase_options.dart';
 import 'package:firebase/paginas/pagina_registro.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   runApp(const MainApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MainApp extends StatelessWidget {
