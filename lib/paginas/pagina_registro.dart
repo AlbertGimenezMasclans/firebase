@@ -8,10 +8,29 @@ class PaginaRegistro extends StatelessWidget {
     super.key,
   });
 
-  void ferRegistre(){
-    final serveriAuth = ServeriAuth();
+  void ferRegistre(
+      BuildContext context, String email, password, confpassword) async {
+    //Gestio
+    if (password.isEmpty || email.isEmpty) {
+      return;
+    }
 
-    serveriAuth.registreEmailPassword("email1@email1.com", "123456");
+    //Gestio del cas
+    if (password != confpassword) {
+      return;
+    }
+
+    try {
+      ServeriAuth().registreEmailPassword(email, password);
+    } catch (e) {
+      showDialog(context: context, 
+      builder: (context) => AlertDialog(
+        title: const Text("Error"),
+        content: Text(e.toString()),
+      ));
+    }
+
+    
   }
 
   @override
@@ -32,18 +51,18 @@ class PaginaRegistro extends StatelessWidget {
                 children: [
                   //logo.
                   const Icon(Icons.fireplace, size: 120, color: Colors.indigo),
-              
+
                   const SizedBox(height: 25),
-              
+
                   //Frase.
                   const Text("Crear una cuenta nueva",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
-              
+
                   const SizedBox(height: 25),
-              
+
                   //Text divisoro.
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 150),
@@ -62,7 +81,7 @@ class PaginaRegistro extends StatelessWidget {
                       ],
                     ),
                   ),
-              
+
                   //textField Email.
                   TextfieldAuth(
                     controller: tecEmail,
@@ -79,11 +98,11 @@ class PaginaRegistro extends StatelessWidget {
                     obscureText: true,
                     hintText: "Confirmar Password",
                   ),
-              
+
                   const SizedBox(height: 10),
-              
+
                   //no esta registardo?
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("¿Ya eres miembro?",
@@ -100,11 +119,12 @@ class PaginaRegistro extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-              
+
                   //boton de registro.
                   BotoAuth(
                     text: "Registrate",
-                    onTap: ferRegistre,
+                    onTap: () => ferRegistre(context, tecEmail.text,
+                        tecPassword.text, tecConfirmPassword.text),
                   ),
 
                   BotoAuth(
